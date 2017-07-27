@@ -30,4 +30,19 @@ module.exports = function(router) {
       response.sendText(res, 400, 'bad request');
     }
   });
+
+  router.delete('/api/song', function(req, res) {
+    if(req.url.query.id) {
+      storage.deleteItem('song', req.url.query.id)
+      .then( () => {
+        response.sendText(res, 204, 'song deleted');
+      })
+      .catch( err => {
+        console.log(err);
+        response.sendText(res, 404, 'song not found');
+      });
+      return;
+    }
+    response.sendText(res, 400, 'bad request');
+  });
 };
