@@ -64,6 +64,7 @@ modelRoutes.modelPost = function(model, router) {
 
       storage.createItem(`${model}`, newObj);
       header.appHeader(res, 200, newObj);
+      
     } catch (err) {
       console.error(err);
       header.textHeader(res, 400, 'Bad request!')
