@@ -1,8 +1,8 @@
 'use strict'
 
-const exports = module.exports = {};
+const header = module.exports = {};
 
-exports.textHeader = function(res, code, msg) {
+header.textHeader = function(res, code, msg) {
   res.writeHeader(code, {
     'Content-Type': 'text/plain'
   });
@@ -10,11 +10,11 @@ exports.textHeader = function(res, code, msg) {
   res.end();
 }
 
-exports.appHeader = function(res, code, json) {
+header.appHeader = function(res, code, json) {
   res.writeHeader(code, {
     'Content-Type': 'application/json'
   });
-  res.write(JSON.parse(json.toString()));
+  res.write(JSON.stringify(json));
   res.end();
 }
 
