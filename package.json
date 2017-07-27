@@ -1,0 +1,30 @@
+{
+  "name": "09-vanilla_api_persistence",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) Lab 09: Vanilla REST API w/ Persistence ======",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bretladenburg/09-vanilla_api_persistence.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bretladenburg/09-vanilla_api_persistence/issues"
+  },
+  "homepage": "https://github.com/bretladenburg/09-vanilla_api_persistence#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "superagent": "^3.5.2"
+  }
+}

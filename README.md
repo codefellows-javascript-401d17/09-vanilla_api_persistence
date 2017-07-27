@@ -1,32 +1,38 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 09: Vanilla REST API w/ Persistence
-======
+#Overview
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+* This RESTful API provides the back-end infrastructure and funtionality to create, read, update, and delete data relative to superheroes.
 
-## Learning Objectives  
-* students will learn how to save resource data to the file system for a layer of data persistence
-* students will learn how to refactor commonly used coding constructs into custom helper modules
+#Architecture
 
-## Requirements
+<p>This API is structured on a Model View Controller(MVC) architectue pattern.  The basic technologies are: node.js server, node.http module, our own "express like" middleware.</p>
 
-#### Configuration
-* `package.json`
-* `.eslintrc`
-* `.gitignore`
-* `README.md`
-  * your `README.md` should include detailed instructions on how to use your API
-  * this should include documentation on how to access your API endpoints
+<p>Middleware:</p>
 
-#### Feature Tasks
-* continue working on your vanilla REST API
-* refactor your routes to be contained in a separate module (ex: `route/resource-route.js`)
-* refactor your `res` messages & status codes to be contained in a separate module (ex: `response.js`)
-* refactor the `storage.js` module to use file system persistence
-  * use the `fs` module to create and read the associated data files
-  * the name of the file should contain the related resource id
+* We wrote a vanilla version of our own router that handles the base routing.
+
+* We wrote a vanilla version of a body-parser module that parses JSON data.
+
+#API endpoints
+
+##POST /api/superhero
+
+<p>Required Data:</p>
+
+* Provide superhero name, the comic universe where they are from as JSON.
+
+<p>This route will create a new superhero by providing a superhero name and a comic book universe from which they reside in the body of the request.</p>
+
+##GET /api/superhero
+
+<p>Required Data:</p>
+
+* Provide a specific unique superhero id.
+
+<p>This route will require a unique superhero id and grab the specific JSON object associated with that id.</p>
+
+#Testing
+
+* Testing Framework mocha test runner
+* chai(expect)
+* bluebird promise library
+* eslint
