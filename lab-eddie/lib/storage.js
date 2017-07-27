@@ -1,6 +1,7 @@
 'use strict';
 
-const storage = {};
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(required('fs'), {suffix: 'Prom'});
 
 module.exports = exports = {};
 
