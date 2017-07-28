@@ -1,32 +1,75 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 09: Vanilla REST API w/ Persistence
-======
+# Vanilla API Persistence - 09 Lab
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+## Description:
+This app builds out an API where data is stored in the file system. This API stores beer data with the schema of name, style, and IBU.
 
-## Learning Objectives  
-* students will learn how to save resource data to the file system for a layer of data persistence
-* students will learn how to refactor commonly used coding constructs into custom helper modules
+## API:
+The URL endpoint to access the api is `/api/beer`.  Using REST architecture the data is read, written and deleted using `GET`, `POST` and `DELETE` requests.
 
-## Requirements
+### POST:
 
-#### Configuration
-* `package.json`
-* `.eslintrc`
-* `.gitignore`
-* `README.md`
-  * your `README.md` should include detailed instructions on how to use your API
-  * this should include documentation on how to access your API endpoints
+```
+request.post('localhost:8000/api/beer')
+.send({ name: 'Have a Nice Day IPA', style: 'IPA', IBU: '43' })
+```
 
-#### Feature Tasks
-* continue working on your vanilla REST API
-* refactor your routes to be contained in a separate module (ex: `route/resource-route.js`)
-* refactor your `res` messages & status codes to be contained in a separate module (ex: `response.js`)
-* refactor the `storage.js` module to use file system persistence
-  * use the `fs` module to create and read the associated data files
-  * the name of the file should contain the related resource id
+This is a representation of the POST method. You can see that we first make a request to post to
+```
+localhost:8000
+```
+with a route of
+```
+/api/beer
+```
+Once the connection has bee made we send our beer in
+```
+.send({ name: 'Have a Nice Day IPA', style: 'IPA', IBU: '43' })
+```
+format. This will respond with 200 if the request was made or 400 if not.
+
+### GET
+
+```
+request.get(`localhost:8000/api/beer?id=${beer.id}`)
+```
+This is a representation of the GET method. You can see that we first make a request to post to
+
+```
+localhost:8000
+```
+with a route of
+
+```
+/api/beer
+```
+
+finally with finish the request with reference to a specific id which was generated with uuid
+
+```
+?id=${beer.id}
+```
+
+This will respond with 200 if the request was made, 404 if not found or 400 if the request was made in wrong format.
+
+### DELETE
+
+```
+request.delete(`localhost:8000/api/beer?id=${beer.id}`)
+```
+
+This is a representation of the POST method. You can see that we first make a request to post to
+
+```
+localhost:8000
+```
+with a route of
+
+```
+/api/beer
+```
+finally with finish the request with reference to a specific id which was generated with uuid
+```
+?id=${beer.id}
+```
+
+This will respond with 200 if the request was made, 404 if not found or 400 if the request was made in wrong format.
