@@ -8,7 +8,6 @@ const Dog = require('../model/dog.js')
 const Employee = require('../model/employee.js')
 const Character = require('../model/character.js')
 
-
 const modelRoutes = module.exports = {};
 
 modelRoutes.models = {
@@ -94,5 +93,6 @@ modelRoutes.modelDelete = function(model, router) {
 
     header.textHeader(res, 400, 'Bad request!')
   });
-
 }
+
+require('./auto-direct.js')(modelRoutes.models);
