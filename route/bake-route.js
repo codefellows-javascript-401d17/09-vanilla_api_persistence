@@ -32,4 +32,21 @@ module.exports = function(router) {
       response.sendText(res, 400, 'bad request');
     }
   });
+
+  router.delete('/api/bake', function(req, res) {
+    if (req.url.query.id) {
+      storage.deleteItem('bake', req.url.query.id)
+      .then( () => {
+        response.sendText(res, 204, 'deleted');
+      })
+      .catch( err => {
+        console.error(err);
+        response.sendText(res, 400, 'bad request');
+      });
+
+      return;
+    }
+
+    response.sendText(res, 400, 'bad request');
+  });
 };
