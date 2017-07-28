@@ -6,9 +6,10 @@ const PORT = process.env.PORT || 5000;
 const modelPaths = require('./lib/model-paths.js')
 const router = new Router();
 
-modelPaths.allRoutes('person', router);
-modelPaths.allRoutes('car', router);
-modelPaths.allRoutes('dog', router);
+const modelKeys = Object.keys(modelPaths.models);
+modelKeys.forEach(key => {
+  modelPaths.allRoutes(key, router);
+})
 
 const server = http.createServer(router.route());
   

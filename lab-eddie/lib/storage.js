@@ -1,46 +1,41 @@
 'use strict';
 
 const Promise = require('bluebird');
-const fs = Promise.promisifyAll(required('fs'), {suffix: 'Prom'});
+const fs = Promise.promisifyAll(require('fs'), { suffix: 'Prom' });
 
 module.exports = exports = {};
 
 exports.createItem = function(category, item) {
   if(!category) return Promise.reject(new Error(`Expecte category`));
   if(!item) return Promise.reject(new Error('Expected item'));
-  if(!storage[category]) storage[category] = {};
-
-  storage[category][item.id] = item;
-  return Promise.resolve(item);
+  
+  let stringObj = JSON.stringify(item);
+  return fs.writeFileProm(`${__dirname}/../data/${category}/${item.id}.json`, stringObj)
+  .then(() => item)
+  .catch(err => Promise.reject(err));
 }
 
 exports.fetchItem = function(category, id) {
-  return new Promise((resolve, reject) => {
-    if(!category) return Promise.reject(new Error(`Expecte category`));
-    
-    var cat = storage[category];
-    if(!cat) return reject(new Error('Category not found'));
-    if(!id) return resolve(Object.keys(cat))
+  if(!category) return Promise.reject(new Error(`Expecte category`));
+  if(!id) return Promise.reject(new Error('Expected item'));
 
-    var item = cat[id]
-    if(!item) return reject(new Error('Item not found.'))
-
-    resolve(item);
-  });
+  return fs.readFileProm(`${__dirname}/../data/${category}/${id}.json`)
+  .then(data => {
+    try {
+      let item = JSON.parse(data.toString());
+      return item;
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  })
 };
 
 exports.deleteItem = function(category, id) {
-  return new Promise((resolve, reject) => {
-    if(!category) return Promise.reject(new Error(`Expecte category`));
-    
-    var cat = storage[category];
-    if(!cat) return reject(new Error('Category not found'));
-    if(!id) return reject(new Error('ID not found'));
+  if(!category) return Promise.reject(new Error(`Expecte category`));
+  if(!id) return Promise.reject(new Error('Expected item'));
+  console.log(fs.unlinkProm)
+  return fs.unlinkProm(`${__dirname}/../data/${category}/${id}.json`)
+  .then(() => '')
+  .catch(err => Promise.reject(err));
 
-    var item = cat[id]
-    if(!item) return reject(new Error('Item not found.'))
-    delete storage[category][id];
-
-    resolve({});
-  });
 };

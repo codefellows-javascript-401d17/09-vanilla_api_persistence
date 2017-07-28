@@ -28,6 +28,7 @@ modelRoutes.modelGet = function(model,router) {
     if (req.url.query.id) {
       storage.fetchItem(`${model}`, req.url.query.id)
       .then( item => {
+        console.log('Item xxxxxx: ', item)
         header.appHeader(res, 200, item);
       })
       .catch( err => {
@@ -64,7 +65,7 @@ modelRoutes.modelPost = function(model, router) {
 
       storage.createItem(`${model}`, newObj);
       header.appHeader(res, 200, newObj);
-      
+
     } catch (err) {
       console.error(err);
       header.textHeader(res, 400, 'Bad request!')
@@ -78,7 +79,7 @@ modelRoutes.modelDelete = function(model, router) {
     if (req.url.query.id) {
       storage.deleteItem(`${model}`, req.url.query.id)
       .then( item => {
-        header.appHeader(res, 200, item);
+        header.appHeader(res, 202, item);
       })
       .catch( err => {
         console.error(err);
