@@ -5,6 +5,8 @@ const header = require('./header.js')
 const Person = require('../model/person.js');
 const Car = require('../model/car.js');
 const Dog = require('../model/dog.js')
+const Employee = require('../model/employee.js')
+const Character = require('../model/character.js')
 
 
 const modelRoutes = module.exports = {};
@@ -12,7 +14,9 @@ const modelRoutes = module.exports = {};
 modelRoutes.models = {
   person : Person,
   car: Car,
-  dog: Dog
+  dog: Dog,
+  employee: Employee,
+  character: Character
 }
 
 
