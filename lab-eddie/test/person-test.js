@@ -27,16 +27,6 @@ describe('person Routes', function() {
   });
   describe('GET: /api/person (No IDs)', function() {
     it('should return an array of IDs', function(done) {
-      request.post('localhost:3000/api/person')
-      .send({ first: 'John', last: 'Doe', age: 69, job: 'ninja' })
-      .end((err) => {
-        if (err) return done(err);
-      });
-      request.post('localhost:3000/api/person')
-      .send({ first: 'Jane', last: 'Doe', age: 99, job: 'wizard' })
-      .end((err) => {
-        if (err) return done(err);
-      });
       request.get('localhost:3000/api/person')
       .end((err, res) => {
         if(err) return done(err);

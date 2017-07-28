@@ -28,7 +28,6 @@ modelRoutes.modelGet = function(model,router) {
     if (req.url.query.id) {
       storage.fetchItem(`${model}`, req.url.query.id)
       .then( item => {
-        console.log('Item xxxxxx: ', item)
         header.appHeader(res, 200, item);
       })
       .catch( err => {
@@ -40,7 +39,6 @@ modelRoutes.modelGet = function(model,router) {
     } else if (req.url.query) {
       storage.fetchItem(`${model}`)
       .then( item => {
-        console.log('final product: ', item)
         header.appHeader(res, 200, item);
       })
       .catch( err => {
