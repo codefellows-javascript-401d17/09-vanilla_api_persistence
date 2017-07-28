@@ -17,7 +17,8 @@ exports.createItem = function(category, item) {
 
 exports.fetchItem = function(category, id) {
   if(!category) return Promise.reject(new Error(`Expecte category`));
-  if(!id) return Promise.reject(new Error('Expected item'));
+  if(!id) return exports.fetchCategory(category);
+  
 
   return fs.readFileProm(`${__dirname}/../data/${category}/${id}.json`)
   .then(data => {
@@ -33,9 +34,20 @@ exports.fetchItem = function(category, id) {
 exports.deleteItem = function(category, id) {
   if(!category) return Promise.reject(new Error(`Expecte category`));
   if(!id) return Promise.reject(new Error('Expected item'));
-  console.log(fs.unlinkProm)
+
   return fs.unlinkProm(`${__dirname}/../data/${category}/${id}.json`)
   .then(() => '')
   .catch(err => Promise.reject(err));
 
 };
+
+exports.fetchCategory= function(category) {
+  if(!category) return Promise.reject(new Error(`Expecte category`));
+
+  return fs.readdirProm(`${__dirname}/../data/${category}`)
+  .then(data => {
+    data = data.map(id => id.split('.json')[0])
+    return data;
+  })
+  .catch(err => Promise.reject(err))
+}

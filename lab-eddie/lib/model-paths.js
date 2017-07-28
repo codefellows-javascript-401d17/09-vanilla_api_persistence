@@ -40,6 +40,7 @@ modelRoutes.modelGet = function(model,router) {
     } else if (req.url.query) {
       storage.fetchItem(`${model}`)
       .then( item => {
+        console.log('final product: ', item)
         header.appHeader(res, 200, item);
       })
       .catch( err => {
