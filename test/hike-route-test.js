@@ -11,7 +11,7 @@ describe('Hike Routes', function(){
   describe('POST: /api/hike', function(){
     it('should return a hike', function(done){
       request.post('localhost:8000/api/hike')
-      .send({name:'some cool hike', distance: '3.4 miles', difficulty: 'medium', description:'a cool hike'})
+      .send({name:'some cool hike', distance:'3.4 miles', difficulty:'medium', description:'a cool hike'})
       .end((err, res) => {
         if(err) return done(err);
         expect(res.status).to.equal(200);
