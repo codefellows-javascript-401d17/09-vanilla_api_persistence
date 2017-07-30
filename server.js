@@ -4,7 +4,7 @@ const http = require('http');
 const Router = require('./lib/router.js');
 const PORT = process.env.PORT || 3000;
 const router = new Router();
-require('./rout/bake-route.js')(router);
+require('./route/bake-route.js')(router);
 
 const server = http.createServer(router.route());
 
